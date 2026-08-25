@@ -43,8 +43,13 @@
 			theme.set.theme(defaultTheme);
 
 			if (browser) {
-				const localStorageDarkMode = localStorage.getItem('darkMode') || 'false';
-				isDarkMode = localStorageDarkMode === 'true';
+				const savedDarkMode = localStorage.getItem('darkMode');
+
+				if (savedDarkMode === null) {
+					isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				} else {
+					isDarkMode = savedDarkMode === 'true';
+				}
 			}
 		});
 	});
