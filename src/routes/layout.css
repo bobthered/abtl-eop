@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@source '../node_modules/sveltewind';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+	--color-primary-50: #fff7ed;
+	--color-primary-100: #ffecd4;
+	--color-primary-200: #ffd6a9;
+	--color-primary-300: #ffb872;
+	--color-primary-400: #fe8f39;
+	--color-primary-500: #fc6a0b;
+	--color-primary-600: #ed5409;
+	--color-primary-700: #c43d0a;
+	--color-primary-800: #9c3110;
+	--color-primary-900: #7d2b11;
+	--color-primary-950: #441206;
+
+	--color-secondary-50: #edf6ff;
+	--color-secondary-100: #d6eaff;
+	--color-secondary-200: #b6dbff;
+	--color-secondary-300: #83c5ff;
+	--color-secondary-400: #49a5ff;
+	--color-secondary-500: #1f81ff;
+	--color-secondary-600: #0763ff;
+	--color-secondary-700: #0151fa;
+	--color-secondary-800: #0840c5;
+	--color-secondary-900: #0e3b9a;
+	--color-secondary-950: #0e255d;
+
+	--color-gray-50: #fafaf9;
+	--color-gray-100: #f5f5f4;
+	--color-gray-200: #e7e5e4;
+	--color-gray-300: #d6d3d1;
+	--color-gray-400: #a8a29e;
+	--color-gray-500: #8b837e;
+	--color-gray-600: #57534e;
+	--color-gray-700: #44403c;
+	--color-gray-800: #292524;
+	--color-gray-900: #1c1917;
+	--color-gray-950: #0c0a09;
+}
+
+@layer base {
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: theme(colors.primary.500) transparent;
+	}
+
+	*::-webkit-scrollbar {
+		@apply h-2 w-2;
+	}
+
+	*::-webkit-scrollbar-track {
+		@apply bg-transparent;
+	}
+}
