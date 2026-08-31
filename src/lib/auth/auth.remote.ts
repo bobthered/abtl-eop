@@ -3,6 +3,7 @@ import * as v from 'valibot';
 import { form, getRequestEvent } from '$app/server';
 import { invalid, redirect } from '@sveltejs/kit';
 import { User } from '#lib/mongoose/models/index.ts';
+import { connect } from '#lib/mongoose/index.js';
 import type { ObjectId } from 'mongoose';
 
 export const signIn = form(
@@ -13,6 +14,7 @@ export const signIn = form(
 	async ({ _password, username }, issue) => {
 		console.log('signIn: findOne starting');
 
+		await connect();
 		const user: { _id: ObjectId; passwordHash: string } | null = await User.findOne({ username });
 
 		console.log('signIn: findOne complete');
