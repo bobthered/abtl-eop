@@ -10,6 +10,8 @@
 		"directory": ".svelte-kit/cloudflare"
 	},
 
+	"keep_vars": true,
+
 	"observability": {
 		"enabled": true
 	}
