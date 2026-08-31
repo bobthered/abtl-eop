@@ -4,7 +4,11 @@ import { redirect } from '@sveltejs/kit';
 import { userAccess } from '#lib/auth/userAccess.ts';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	console.log('connect: starting');
+
 	await connect();
+
+	console.log('connect: complete');
 
 	const userId = event.cookies.get('userId');
 
