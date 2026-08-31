@@ -5,12 +5,18 @@
 	"compatibility_date": "2026-08-25",
 	"compatibility_flags": ["nodejs_compat"],
 
+	"vars": {
+		"MONGODB_DB": "v5"
+	},
+
+	"secrets": {
+		"required": ["MONGODB_URL"]
+	},
+
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
-
-	"keep_vars": true,
 
 	"observability": {
 		"enabled": true
