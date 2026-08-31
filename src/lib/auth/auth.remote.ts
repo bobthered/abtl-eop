@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import * as v from 'valibot';
 import { form, getRequestEvent } from '$app/server';
 import { invalid, redirect } from '@sveltejs/kit';
