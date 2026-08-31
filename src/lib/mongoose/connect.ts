@@ -4,6 +4,7 @@ import { MONGODB_DB, MONGODB_URL } from '$app/env/private';
 type Options = {
 	appName?: string;
 	dbName?: string;
+	family?: 0 | 4 | 6;
 	maxPoolSize?: number;
 	minPoolSize?: number;
 	maxIdleTimeMS?: number;
@@ -15,6 +16,7 @@ let connPromise: Promise<typeof mongoose> | null = null;
 const options = ({
 	appName,
 	dbName,
+	family,
 	maxPoolSize,
 	minPoolSize,
 	maxIdleTimeMS,
@@ -25,6 +27,7 @@ const options = ({
 	return {
 		appName: appName ?? 'sveltekit-app',
 		dbName: dbName ?? MONGODB_DB,
+		family: family ?? 4,
 		maxPoolSize: maxPoolSize ?? (dev ? 5 : 10),
 		minPoolSize: minPoolSize ?? 0,
 		maxIdleTimeMS: maxIdleTimeMS ?? 30_000,
@@ -35,21 +38,17 @@ const options = ({
 export const connect = async (): Promise<typeof mongoose> => {
 	const state = mongoose.connection.readyState;
 
-	// 1 = connected
 	if (state === 1) return mongoose;
 
-	// Existing in-flight connection
 	if (connPromise) return connPromise;
 
-	// Disable mongoose command buffering so failures surface immediately
 	mongoose.set('bufferCommands', false);
 
 	try {
-		connPromise = mongoose.connect(MONGODB_URL, options());
+		connPromise = mongoose.connect(MONGODB_URL ?? '', options());
 
 		return await connPromise;
 	} catch (error) {
-		// Allow future retries if initial connection fails
 		connPromise = null;
 		throw error;
 	}
