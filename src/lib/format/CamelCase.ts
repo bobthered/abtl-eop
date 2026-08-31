@@ -1,0 +1,9 @@
+class CamelCaseTo {
+	sentenceCase(value: string): string {
+		return value.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/^./, (char) => char.toUpperCase());
+	}
+}
+
+export class CamelCase {
+	readonly to = new CamelCaseTo();
+}

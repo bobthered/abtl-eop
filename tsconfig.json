@@ -1,9 +1,8 @@
 {
-	"extends": "$app/tsconfig",
 	"compilerOptions": {
 		"sourceMap": true,
 		"strict": true
-	}
-	// To make changes to top-level options such as include and exclude, we recommend extending
-	// the generated config; see https://svelte.dev/docs/kit/configuration#typescript
+	},
+	"exclude": ["src/service-worker"],
+	"extends": "$app/tsconfig"
 }

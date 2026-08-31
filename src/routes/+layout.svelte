@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { untrack, type Snippet } from 'svelte';
 	import { theme } from 'sveltewind/theme';
-	import { default as defaultTheme } from 'sveltewind/themes';
 	import { browser } from '$app/env';
 	import { page } from '$app/state';
+	import { theme as defaultTheme } from '#lib/themes';
 
 	import './layout.css';
 
