@@ -12,21 +12,13 @@ export const signIn = form(
 		username: v.pipe(v.string(), v.nonEmpty())
 	}),
 	async ({ _password, username }, issue) => {
-		console.log('signIn: findOne starting');
-
 		await connect();
 		const user: { _id: ObjectId; passwordHash: string } | null = await User.findOne({ username });
 
-		console.log('signIn: findOne complete');
-
 		if (user === null) return invalid(issue.username(`No username found`));
-
-		console.log('signIn: bcrypt starting');
 
 		if (!(await bcrypt.compare(_password, user.passwordHash)))
 			return invalid(issue.username(`Credentials do not match`));
-
-		console.log('signIn: bcrypt complete');
 
 		const { cookies } = getRequestEvent();
 		cookies.set('userId', user._id.toString(), { path: '/' });
